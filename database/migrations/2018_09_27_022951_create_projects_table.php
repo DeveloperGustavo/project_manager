@@ -19,8 +19,12 @@ class CreateProjectsTable extends Migration
             $table->float('cost');
             $table->string('description');
             $table->dateTime('final_date');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('projects', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
