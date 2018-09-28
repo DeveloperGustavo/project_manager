@@ -22,7 +22,8 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" class="form-horizontal">
+            <form method="post" action="/projects" class="form-horizontal">
+                @csrf
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Nome do projeto</label>
@@ -58,8 +59,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                    <button type="submit" class="btn btn-success pull-right">Cadastrar</button>
                 </div>
                 <!-- /.box-footer -->
             </form>
