@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Nome do projeto</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" placeholder="Nome do projeto">
+                                <input type="text" class="form-control" id="name" placeholder="Nome do projeto">
                         </div>
                     </div>
 
@@ -64,6 +64,22 @@
                 <!-- /.box-footer -->
             </form>
         </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($project as $value)
+                <tr>
+                    <td>{{ $value->id }}</td>
+                    <td>{{ $value->name }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
     @stack('script')
 @endsection

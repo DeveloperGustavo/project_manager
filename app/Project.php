@@ -8,10 +8,10 @@ class Project extends Model
 {
     protected $fillable = [
         'name',
+        'description',
         'cost',
-        'owner',
         'final_date',
-        'description'
+        'user_id'
     ];
 
     public function projects(){

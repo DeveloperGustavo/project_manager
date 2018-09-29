@@ -14,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('project.list');
+        $project = Project::all();
+        return $project;
     }
 
     /**
@@ -24,7 +25,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.main-project');
+        $project = ProjectController::index();
+        return view('project.main-project')
+            ->with('project', $project);
     }
 
     /**
@@ -36,7 +39,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $project = Project::create($request->all());
-        return view('project.list')
+        return redirect()->route('projects/create')
             ->with('project', $project);
     }
 
