@@ -14,7 +14,7 @@ class Project extends Model
         'user_id'
     ];
 
-    public function projects(){
+    public function users(){
         return $this->belongsToMany(User::class);
     }
 }
