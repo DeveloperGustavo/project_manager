@@ -50,9 +50,9 @@ class ProjectController extends Controller
             'user_id' =>$user
         ]);
         $project = Project::create($request->all());
-
+        $project_pagination = DB::table('projects')->paginate(5);
         return redirect('projects/create')
-            ->with('project', $project);
+            ->with('project_pagination', $project_pagination);
     }
 
     /**

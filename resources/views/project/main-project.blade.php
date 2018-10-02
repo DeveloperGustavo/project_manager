@@ -14,11 +14,18 @@
 @endpush
 
 @section('content')
+<div class="row">
     <div class="col-md-12">
         <!-- Horizontal Form -->
-        <div class="box box-info">
+        <div class="box box-info collapsed-box">
             <div class="box-header with-border">
                 <h3 class="box-title">Iniciar novo projeto</h3>
+                <div class="box-tools pull-right">
+                        <button type="button"
+                                class="btn btn-box-tool"
+                                data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -64,26 +71,47 @@
                 <!-- /.box-footer -->
             </form>
         </div>
-        <div class="box-body table-reponsive no-padding">
-            <table class="table table-hover">
-                <thead>
+
+        <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Lista de projetos</h3>
+
+                <div class="box-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tbody>
                     <tr>
-                        <th>Id</th>
                         <th>Nome</th>
+                        <th>Custo (R$)</th>
+                        <th>Data de entrega</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($project as $value)
+                    @foreach($project_pagination as $value)
                     <tr>
-                        <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
-                        <td>{{ $value->cost }}</td>
+                        <td>R$ {{ $value->cost }}</td>
                         <td>{{ $value->final }}</td>
                     </tr>
                     @endforeach
                 </tbody>
-            </table>
-        </div>
+                </table>
+                {{ $project_pagination->links() }}
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
     </div>
     @stack('script')
+</div>
 @endsection
