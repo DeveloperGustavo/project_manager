@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Nome do projeto</label>
                         <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" placeholder="Nome do projeto">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nome do projeto">
                         </div>
                     </div>
 
@@ -37,21 +37,21 @@
                         <div class="col-sm-10">
                             <textarea type="text"
                                       class="form-control"
-                                      id="description" placeholder="Descrição" cols="40" rows="5"></textarea>
+                                      id="description" name="description" placeholder="Descrição" cols="40" rows="5"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="cost" class="col-sm-2 control-label">Custo do projeto (R$)</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control money" id="cost">
+                            <input type="text" class="form-control money" id="cost" name="cost">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="final" class="col-sm-2 control-label">Previsão de término</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control date placeholder" id="final">
+                            <input name="final" type="text" class="form-control date placeholder">
                         </div>
                     </div>
 
@@ -64,22 +64,26 @@
                 <!-- /.box-footer -->
             </form>
         </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($project as $value)
-                <tr>
-                    <td>{{ $value->id }}</td>
-                    <td>{{ $value->name }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="box-body table-reponsive no-padding">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($project as $value)
+                    <tr>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->cost }}</td>
+                        <td>{{ $value->final }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     @stack('script')
 @endsection

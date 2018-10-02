@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -38,8 +39,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $cost = str_replace(",", ".", $request->input('cost'));
+        $final =    substr($request->input('final'), 6, 4) . '-' .
+                    substr($request->input('final'), 3,2) . '-' .
+                    substr($request->input('final'), 0,2);
+        $user = Auth::id();
+        $request->merge([
+            'cost' => $cost,
+            'final' => $final,
+            'user_id' =>$user
+        ]);
         $project = Project::create($request->all());
-        return redirect()->route('projects/create')
+
+        return redirect('projects/create')
             ->with('project', $project);
     }
 

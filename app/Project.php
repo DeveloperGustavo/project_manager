@@ -10,7 +10,7 @@ class Project extends Model
         'name',
         'description',
         'cost',
-        'final_date',
+        'final',
         'user_id'
     ];
 
