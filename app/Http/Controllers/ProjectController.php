@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -15,7 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $project = Project::all();
+        $project = DB::table('projects')->paginate(5);
         return $project;
     }
 
@@ -50,9 +51,8 @@ class ProjectController extends Controller
             'user_id' =>$user
         ]);
         $project = Project::create($request->all());
-        $project_pagination = DB::table('projects')->paginate(5);
         return redirect('projects/create')
-            ->with('project_pagination', $project_pagination);
+            ->with('project', $project);
     }
 
     /**

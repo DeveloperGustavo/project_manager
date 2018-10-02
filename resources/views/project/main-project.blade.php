@@ -96,7 +96,7 @@
                         <th>Custo (R$)</th>
                         <th>Data de entrega</th>
                     </tr>
-                    @foreach($project_pagination as $value)
+                    @foreach($project as $value)
                     <tr>
                         <td>{{ $value->name }}</td>
                         <td>R$ {{ $value->cost }}</td>
@@ -105,7 +105,7 @@
                     @endforeach
                 </tbody>
                 </table>
-                {{ $project_pagination->links() }}
+                {{ $project->links() }}
               </div>
               <!-- /.box-body -->
             </div>
