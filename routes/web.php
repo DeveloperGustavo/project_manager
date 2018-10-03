@@ -19,5 +19,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('projects', 'ProjectController');
+//    Route::get('project/{id}', 'ProjectController@show')->name('ProjectEdit');
     Route::get('/home', 'HomeController@index')->name('home');
 });

@@ -18,7 +18,7 @@ class ProjectController extends Controller
     {
         $user_id = Auth::id();
         $project = DB::table('project_user')
-            ->select('projects.name', 'projects.cost', 'projects.final_date')
+            ->select('projects.id','projects.name', 'projects.cost', 'projects.final_date')
             ->join('projects', 'project_id', '=' ,'projects.id')
             ->join('users', 'user_id', '=', 'users.id')
             ->where('user_id', '=', $user_id)
@@ -56,10 +56,6 @@ class ProjectController extends Controller
         ]);
         $project = Project::create($request->all());
         $project->users()->attach($user_id);
-        $project_user = DB::table('project_user')
-            ->join('projects', 'project_id', '=' ,'projects.id')
-            ->join('users', 'user_id', '=', 'users.id')
-            ->where('user_id', '=', $user_id);
         return redirect('projects/create')
             ->with('project', $project);
     }

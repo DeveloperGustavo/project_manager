@@ -10,6 +10,11 @@ class Task extends Model
         'name',
         'difficult',
         'description',
-        'deleted_at'
+        'deleted_at',
+        'project_id'
     ];
+
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
 }

@@ -103,7 +103,7 @@
                         <td>{{ $value->name }}</td>
                         <td>R$ {{ $value->cost }}</td>
                         <td>{{ date('d/m/Y', strtotime($value->final_date)) }}</td>
-                        <td><a href="{{ route('projects.show', $project) }}">Expandir</a></td>
+                        <td><a href="{{ route('projects.show', ['project' => $value->id]) }}">Expandir</a></td>
                     </tr>
                     @endforeach
                 </tbody>

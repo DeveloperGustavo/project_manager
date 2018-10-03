@@ -19,9 +19,9 @@ class CreateProjectUserTable extends Migration
 
             $table->primary(['project_id', 'user_id']);
 
-            $table->foreign('project_id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects');
 
-            $table->foreign('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
