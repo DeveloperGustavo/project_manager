@@ -16,7 +16,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $project = DB::table('projects')->paginate(5);
+        $user_id = Auth::id();
+        $project = DB::table('project_user')
+            ->select('projects.name', 'projects.cost', 'projects.final_date')
+            ->join('projects', 'project_id', '=' ,'projects.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->where('user_id', '=', $user_id)
+            ->paginate(5);
         return $project;
     }
 
@@ -40,17 +46,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $cost = str_replace(",", ".", $request->input('cost'));
-        $final =    substr($request->input('final'), 6, 4) . '-' .
-                    substr($request->input('final'), 3,2) . '-' .
-                    substr($request->input('final'), 0,2);
-        $user = Auth::id();
+        $final =    substr($request->input('final_date'), 6, 4) . '-' .
+                    substr($request->input('final_date'), 3,2) . '-' .
+                    substr($request->input('final_date'), 0,2);
+        $user_id = Auth::id();
         $request->merge([
-            'cost' => $cost,
-            'final' => $final,
-            'user_id' =>$user
+            'final_date' => $final,
+            'user_id' =>$user_id
         ]);
         $project = Project::create($request->all());
+        $project->users()->attach($user_id);
+        $project_user = DB::table('project_user')
+            ->join('projects', 'project_id', '=' ,'projects.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->where('user_id', '=', $user_id);
         return redirect('projects/create')
             ->with('project', $project);
     }

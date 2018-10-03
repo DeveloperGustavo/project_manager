@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="final" class="col-sm-2 control-label">Previsão de término</label>
                         <div class="col-sm-10">
-                            <input name="final" type="text" class="form-control date placeholder">
+                            <input name="final_date" type="text" class="form-control date placeholder">
                         </div>
                     </div>
 
@@ -75,7 +75,8 @@
         <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">Lista de projetos</h3>
+                <h3 class="box-title">
+                    <i class="fa fa-calendar-check-o"></i> Lista de projetos</h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -100,7 +101,7 @@
                     <tr>
                         <td>{{ $value->name }}</td>
                         <td>R$ {{ $value->cost }}</td>
-                        <td>{{ $value->final }}</td>
+                        <td>{{ $value->final_date }}</td>
                     </tr>
                     @endforeach
                 </tbody>

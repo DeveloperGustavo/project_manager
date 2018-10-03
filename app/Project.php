@@ -10,8 +10,7 @@ class Project extends Model
         'name',
         'description',
         'cost',
-        'final',
-        'user_id'
+        'final_date'
     ];
 
     public function users(){
