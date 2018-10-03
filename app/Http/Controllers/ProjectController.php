@@ -72,7 +72,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('project.edit', ['project' => Project::findOrFail($id)]);
     }
 
     /**

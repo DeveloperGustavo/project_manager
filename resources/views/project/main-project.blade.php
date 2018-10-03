@@ -96,12 +96,14 @@
                         <th>Nome</th>
                         <th>Custo (R$)</th>
                         <th>Data de entrega</th>
+                        <th>Ação</th>
                     </tr>
                     @foreach($project as $value)
                     <tr>
                         <td>{{ $value->name }}</td>
                         <td>R$ {{ $value->cost }}</td>
-                        <td>{{ $value->final_date }}</td>
+                        <td>{{ date('d/m/Y', strtotime($value->final_date)) }}</td>
+                        <td><a href="{{ route('projects.show', $project) }}">Expandir</a></td>
                     </tr>
                     @endforeach
                 </tbody>
