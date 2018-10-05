@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-
+@include('modals.modals')
 @push('script')
     <script>
         //Input mask
@@ -25,19 +25,29 @@
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
-                        <b>Em andamento</b> <a class="pull-right">1,322</a>
+                        <b>Em andamento</b> <a class="pull-right">{{ $task_not_done }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Finalizadas</b> <a class="pull-right">543</a>
+                        <b>Finalizadas</b> <a class="pull-right">{{ $task_done }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Total</b> <a class="pull-right">13,287</a>
+                        <b>Total</b> <a class="pull-right">{{ $task_count }}</a>
                     </li>
                 </ul>
             </div>
             <!-- /.box-body -->
         </div>
     </div>
+
+    <a class="btn btn-app">
+        <i class="fa fa-user-plus" data-toggle="modal" data-target="#member"></i>
+        Participante
+    </a>
+
+    <a class="btn btn-app" data-toggle="modal" data-target="#tarefa">
+        <i class="fa fa-edit"></i>
+        Tarefa
+    </a>
 
     <div class="col-md-9">
         <div class="nav-tabs-custom">
@@ -49,7 +59,50 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="activity">
-
+                    <div class="row">
+                        @foreach($task as $value)
+                            @if($value->difficult === 1)
+                                <div class="col-md-4">
+                                    <div class="panel box box-success">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                {{ $value->name }}
+                                            </h4>
+                                        </div>
+                                            <div class="box-body">
+                                                {{ $value->description }}
+                                            </div>
+                                    </div>
+                                </div>
+                            @elseif($value->difficult === 2)
+                                <div class="col-md-4">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                {{ $value->name }}
+                                            </h4>
+                                        </div>
+                                        <div class="box-body">
+                                            {{ $value->description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-4">
+                                    <div class="panel box box-danger">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                {{ $value->name }}
+                                            </h4>
+                                        </div>
+                                        <div class="box-body">
+                                            {{ $value->description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="timeline">

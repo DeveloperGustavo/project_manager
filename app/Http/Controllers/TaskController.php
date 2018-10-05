@@ -33,10 +33,13 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $task = Task::create($request->all());
-        return redirect()->route('projects.show', $task);
+        $request->merge([
+           'project_id' => $id
+        ]);
+        Task::create($request->all());
+        return back();
     }
 
     /**
@@ -47,7 +50,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('project.edit', ['project' => Project::findOrFail($id)]);
     }
 
     /**

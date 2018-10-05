@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -68,7 +69,17 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return view('project.edit', ['project' => Project::findOrFail($id)]);
+        $task = Task::all()
+            ->where('project_id', '=', $id);
+        $task_count = count($task);
+        $t = $task->where('final_date', '!=', null);
+        $task_done = count($t);
+        $task_not_done = $task_count - $task_done;
+        return view('project.edit', ['project' => Project::findOrFail($id)])
+            ->with('task', $task)
+            ->with('task_count', $task_count)
+            ->with('task_done', $task_done)
+            ->with('task_not_done', $task_not_done);
     }
 
     /**
