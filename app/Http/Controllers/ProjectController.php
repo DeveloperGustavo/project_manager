@@ -7,6 +7,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class ProjectController extends Controller
 {
@@ -114,5 +115,21 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Add a new member to a project.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function IncludeMember(Request $request, $id)
+    {
+        $user_id = DB::table('users')
+                ->where('email', '=', $request->input('email'))
+                ->value('id');
+        $project = Project::findOrFail($id);
+        $project->users()->attach($user_id);
+        return redirect()->route('projects.show', $project);
     }
 }

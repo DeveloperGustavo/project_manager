@@ -54,31 +54,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('create_task', $project->id) }}" method="POST">
+                    <form action="{{ route('include_member', $project->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Nome da tarefa</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Nome">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="description">Descrição da tarefa</label>
-                            <textarea name="description" type="Description" class="form-control" id="description" placeholder="Descrição"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="difficult">Dificuldade</label>
-                            <select class="form-control" name="difficult">
-                                <option value="0">- Selecione -</option>
-                                <option value="1">Fácil</option>
-                                <option value="2">Média</option>
-                                <option value="3">Difícil</option>
-                            </select>
+                            <label for="email">E-mail do novo membro</label>
+                            <input name="email" type="text" class="form-control" id="email" placeholder="E-mail">
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
                         </div>
                     </form>
                 </div>
