@@ -14,6 +14,7 @@
 @endpush
 
 @section('content')
+    {{ var_dump($task) }}
 <div class="row">
     <div class="col-md-3">
         <div class="box box-primary">
@@ -72,6 +73,16 @@
                                             <div class="box-body">
                                                 {{ $value->description }}
                                             </div>
+                                            <button type="button"
+                                                    class="btn btn-success"
+                                                    data-toggle="modal" data-target="#check">
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-danger"
+                                                    data-toggle="modal" data-target="#remove">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
                                     </div>
                                 </div>
                             @elseif($value->difficult === 2)
@@ -85,6 +96,16 @@
                                         <div class="box-body">
                                             {{ $value->description }}
                                         </div>
+                                        <button type="button"
+                                                class="btn btn-success"
+                                                data-toggle="modal" data-target="#check">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                data-toggle="modal" data-target="#remove">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </button>
                                     </div>
                                 </div>
                             @else
@@ -98,6 +119,16 @@
                                         <div class="box-body">
                                             {{ $value->description }}
                                         </div>
+                                        <button type="button"
+                                                class="btn btn-success"
+                                                data-toggle="modal" data-target="#check">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                data-toggle="modal" data-target="#remove">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </button>
                                     </div>
                                 </div>
                             @endif

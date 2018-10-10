@@ -73,7 +73,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->input('code') == 1){
+            DB::table('tasks')
+                ->where('id', '=', $id)
+                ->update(['check' => 1]);
+        }
+
+        if($request->input('code') == 2) {
+            DB::table('tasks')
+                ->where('id', '=', $id)
+                ->update(['deleted_at' => now()]);
+        }
+
+        return view()->route('projects.show');
     }
 
     /**
