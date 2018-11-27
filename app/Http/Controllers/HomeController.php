@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::id();
+        $project = DB::table('projects')
+            ->join('project_user', 'project_id', '=', 'projects.id')
+            ->where('project_user.user_id', $user);
+        $cost = DB::table('projects')
+            ->join('project_user', 'project_id', '=', 'projects.id')
+            ->select('projects.cost')
+            ->where('project_user.user_id', $user);
+        return view('home')
+            ->with('project', $project)
+            ->with('cost', $cost);
     }
 }

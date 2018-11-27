@@ -14,7 +14,7 @@
 @endpush
 
 @section('content')
-    {{ var_dump($task) }}
+
 <div class="row">
     <div class="col-md-3">
         <div class="box box-primary">
@@ -291,6 +291,7 @@
         </div>
         <!-- /.nav-tabs-custom -->
     </div>
+
 </div>
     @stack('script')
 @endsection

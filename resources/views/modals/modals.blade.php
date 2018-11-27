@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('create_task', $project->id) }}" method="POST">
+                    <form action="{{ route('tasks.store', ['id' => $project->id]) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nome da tarefa</label>
@@ -43,7 +43,7 @@
     </div>
 
 
-    <!-- Modal to include a new member to project -->
+    <!-- Modal to include a new member to the project -->
     <div class="modal fade" id="member" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -82,10 +82,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Você realmente deseja concluir esta tarefa?
-                    </p>
-                    <form action="{{ route('tasks.update', $task->id) }}" method="PUT">
+                    <form action="{{ route('tasks.update', ['id' => $task->id]) }}" method="PUT">
+                        <p>
+                            Você realmente deseja concluir esta tarefa?
+                        </p>
                         @csrf
                         <input name="code" id="code" type="hidden" value="1">
                         <div class="modal-footer">
@@ -109,10 +109,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Você realmente deseja remover esta tarefa?
-                    </p>
-                    <form action="{{ route('tasks.update', $task->id) }}" method="PUT">
+                    <form action="{{ route('tasks.update', ['id' => $task->id]) }}" method="PUT">
+                        <p>
+                            Você realmente deseja remover esta tarefa?
+                        </p>
                         @csrf
                         <input name="code" id="code" type="hidden" value="2">
                         <div class="modal-footer">

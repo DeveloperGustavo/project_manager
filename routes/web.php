@@ -18,9 +18,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
+
+//    Route::resource('tasks', 'TaskController');
+
+    Route::post('/store/{id}', 'TaskController@store')->name('tasks.store');
+    Route::put('/update/{id}', 'TaskController@update')->name('tasks.update');
+
+    Route::post('tasks/{id}', 'TaskController@update')
+        ->name('check');
+
+    Route::post('tasks/{id}', 'TaskController@update')
+        ->name('remove');
+
     Route::resource('projects', 'ProjectController');
-    Route::resource('tasks', 'TaskController');
-    Route::post('tasks/{id}', 'TaskController@store')->name('create_task');
-    Route::post('projects/{id}', 'ProjectController@IncludeMember')->name('include_member');
+
+    Route::post('projects/{id}', 'ProjectController@IncludeMember')
+        ->name('include_member');
+
     Route::get('/home', 'HomeController@index')->name('home');
 });

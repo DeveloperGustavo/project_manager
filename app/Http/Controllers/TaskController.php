@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -77,15 +79,15 @@ class TaskController extends Controller
             DB::table('tasks')
                 ->where('id', '=', $id)
                 ->update(['check' => 1]);
+            return view()->route('projects.show');
         }
 
         if($request->input('code') == 2) {
             DB::table('tasks')
                 ->where('id', '=', $id)
                 ->update(['deleted_at' => now()]);
+            return view()->route('projects.show');
         }
-
-        return view()->route('projects.show');
     }
 
     /**
