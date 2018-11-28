@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('tasks.update', ['id' => $task->id]) }}" method="PUT">
+                    <form action="{{ route('tasks_update', ['id' => $task_id->id]) }}" method="PUT">
                         <p>
                             Você realmente deseja concluir esta tarefa?
                         </p>
@@ -109,7 +109,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('tasks.update', ['id' => $task->id]) }}" method="PUT">
+                    <form action="{{ route('tasks_update', ['id' => $task_id->id]) }}" method="PUT">
                         <p>
                             Você realmente deseja remover esta tarefa?
                         </p>

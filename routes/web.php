@@ -19,10 +19,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
 
-//    Route::resource('tasks', 'TaskController');
+    Route::resource('tasks', 'TaskController');
 
     Route::post('/store/{id}', 'TaskController@store')->name('tasks.store');
-    Route::put('/update/{id}', 'TaskController@update')->name('tasks.update');
+    Route::put('tasks/{id}', 'TaskController@update')->name('tasks_update');
 
     Route::post('tasks/{id}', 'TaskController@update')
         ->name('check');

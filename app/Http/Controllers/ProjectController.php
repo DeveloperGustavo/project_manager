@@ -72,6 +72,11 @@ class ProjectController extends Controller
     {
         $task = Task::all()
             ->where('project_id', '=', $id);
+
+        $task_id = Task::all()
+            ->where('project_id', '=', $id)
+            ->first();
+
         $task_count = count($task);
         $t = $task->where('final_date', '!=', null);
         $task_done = count($t);
@@ -80,7 +85,8 @@ class ProjectController extends Controller
             ->with('task', $task)
             ->with('task_count', $task_count)
             ->with('task_done', $task_done)
-            ->with('task_not_done', $task_not_done);
+            ->with('task_not_done', $task_not_done)
+            ->with('task_id', $task_id);
     }
 
     /**
