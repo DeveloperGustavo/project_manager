@@ -84,7 +84,7 @@
                 <div class="modal-body">
                     <form action="{{ route('tasks_update', ['id' => $task_id->id]) }}" method="PUT">
                         <p>
-                            Você realmente deseja concluir esta tarefa?
+                            Você deseja concluir esta tarefa?
                         </p>
                         @csrf
                         <input name="code" id="code" type="hidden" value="1">
