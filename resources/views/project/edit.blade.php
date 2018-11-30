@@ -61,7 +61,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="activity">
                     <div class="row">
-                        @foreach($task as $value)
+                        @foreach($task_all as $value)
                             @if($value->difficult === 1)
                                 <div class="col-md-4">
                                     <div class="panel box box-success">

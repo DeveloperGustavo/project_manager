@@ -68,25 +68,20 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task, $id)
     {
-        $task = Task::all()
-            ->where('project_id', '=', $id);
-
-        $task_id = Task::all()
-            ->where('project_id', '=', $id)
-            ->first();
-
+        $task->where('project_id', '=', $id);
+        $task_all = Task::where('project_id', '=', $id)->get();
         $task_count = count($task);
         $t = $task->where('final_date', '!=', null);
         $task_done = count($t);
         $task_not_done = $task_count - $task_done;
         return view('project.edit', ['project' => Project::findOrFail($id)])
             ->with('task', $task)
+            ->with('task_all', $task_all)
             ->with('task_count', $task_count)
             ->with('task_done', $task_done)
-            ->with('task_not_done', $task_not_done)
-            ->with('task_id', $task_id);
+            ->with('task_not_done', $task_not_done);
     }
 
     /**
