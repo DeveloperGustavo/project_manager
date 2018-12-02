@@ -22,7 +22,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>{{}}</h3>
+                    <h3></h3>
 
                     <p>Bounce Rate</p>
                 </div>
