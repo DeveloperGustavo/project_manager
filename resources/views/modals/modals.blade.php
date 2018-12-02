@@ -82,11 +82,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('tasks_update', ['id' => $task->id]) }}" method="PUT">
+                    <form method="post" action="{{ route('tasks.update',['tasks' => $task->id]) }}">
+                        {{ method_field('put') }}
+                        {{ csrf_field() }}
                         <p>
                             Você deseja concluir esta tarefa?
                         </p>
-                        @csrf
                         <input name="code" id="code" type="hidden" value="1">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
@@ -109,7 +110,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('tasks_update', ['id' => $task->id]) }}" method="PUT">
+                    <form action="{{ route('tasks.update', ['task' => $task->id]) }}" method="PUT">
                         <p>
                             Você realmente deseja remover esta tarefa?
                         </p>

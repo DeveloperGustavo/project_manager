@@ -73,20 +73,20 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
         if($request->input('code')->value() == 1){
             DB::table('tasks')
-                ->where('id', '=', $id)
+                ->where('id', '=', $task->id)
                 ->update(['check' => 1]);
-            return view()->route('projects.show');
+            return redirect()->route('projects.show');
         }
 
         if($request->input('code')->value() == 2) {
             DB::table('tasks')
-                ->where('id', '=', $id)
+                ->where('id', '=', $task->id)
                 ->update(['deleted_at' => now()]);
-            return view()->route('projects.show');
+            return redirect()->route('projects.show');
         }
     }
 

@@ -22,8 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('tasks', 'TaskController');
 
     Route::post('/store/{id}', 'TaskController@store')->name('tasks.store');
-    Route::put('tasks/{id}', 'TaskController@update')->name('tasks_update');
-
+//    Route::put('tasks/{id}', 'TaskController@update')->name('tasks_update');
     Route::resource('projects', 'ProjectController');
 
     Route::post('projects/{id}', 'ProjectController@IncludeMember')

@@ -291,7 +291,6 @@
         </div>
         <!-- /.nav-tabs-custom -->
     </div>
-
 </div>
     @stack('script')
 @endsection
